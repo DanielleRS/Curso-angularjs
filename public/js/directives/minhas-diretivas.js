@@ -1,46 +1,43 @@
-angular.module('minhasDiretivas', []).directive('meuPainel', function() {
-    var ddo = {};
+angular.module('minhasDiretivas', [])
+	.directive('meuPainel', function() {
 
-    // atributo e elemento
-    ddo.restrict = "AE";
+		var ddo = {};
 
-    ddo.scope = {
-        titulo: '@'
-    };
+		ddo.restrict = "AE";
+        ddo.transclude = true;
 
-    ddo.transclude = true;
 
-    ddo.templateUrl = 'js/directives/meu-painel.html';
+		ddo.scope = {
+            titulo: '@'
+        };
 
-    return ddo;
-})
+        ddo.templateUrl = 'js/directives/meu-painel.html';
 
-.directive('minhaFoto', function() {
-    var ddo = {};
+		return ddo;
+	})
+    .directive('minhaFoto', function() {
 
-    ddo.restrict = "AE";
+        var ddo = {};
 
-    ddo.scope = {
-        titulo: '@',
-        url: '@'
-    };
+        ddo.restrict = "AE";
 
-    ddo.template = '<img class="img-responsive center-block" ng-show="url" src="{{url}}" alt="{{titulo}}">';          
+        ddo.scope = {
+            titulo: '@',
+            url: '@'
+        };
 
-    return ddo;
-})
+        ddo.template = '<img class="img-responsive center-block" src="{{url}}" alt="{{titulo}}">';           
+        
+        return ddo;
+    })
+    .directive('meuBotaoPerigo', function() {
+        var ddo = {};
+        ddo.restrict = "E";
+        ddo.scope = {
+            nome: '@',
+            acao : '&'
+        }
+        ddo.template = '<button class="btn btn-danger btn-block" ng-click="acao()">{{nome}}</button>';
 
-.directive('meuBotaoPerigo', function() {
-    var ddo = {};
-
-    ddo.restrict = "E";
-
-    ddo.scope = {
-        nome: '@',
-        acao: '&'
-    };
-
-    ddo.template = '<button ng-click="acao(foto)" class="btn btn-danger btn-block">{{nome}}</button>';
-
-    return ddo;
-});
+        return ddo;
+    });
